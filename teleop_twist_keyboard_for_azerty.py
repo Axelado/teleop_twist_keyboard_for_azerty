@@ -30,6 +30,7 @@
 # LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
 # ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
+# Personal Modifications 2024 by Axel NIATO
 
 import sys
 import threading
@@ -46,59 +47,60 @@ else:
 
 msg = """
 This node takes keypresses from the keyboard and publishes them
-as Twist/TwistStamped messages. It works best with a US keyboard layout.
+as Twist/TwistStamped messages. It is optimized for an AZERTY keyboard layout.
 ---------------------------
 Moving around:
-   u    i    o
-   j    k    l
-   m    ,    .
+   a    z    e
+   q    s    d
+   w    c
 
 For Holonomic mode (strafing), hold down the shift key:
 ---------------------------
-   U    I    O
-   J    K    L
-   M    <    >
+   A    Z    E
+   Q    S    D
+   W    C
 
 t : up (+z)
-b : down (-z)
+g : down (-z)
 
 anything else : stop
 
-q/z : increase/decrease max speeds by 10%
-w/x : increase/decrease only linear speed by 10%
-e/c : increase/decrease only angular speed by 10%
+r/f : increase/decrease max speeds by 10%
+t/g : increase/decrease only linear speed by 10%
+y/h : increase/decrease only angular speed by 10%
 
 CTRL-C to quit
 """
 
+
 moveBindings = {
-    'i': (1, 0, 0, 0),
-    'o': (1, 0, 0, -1),
-    'j': (0, 0, 0, 1),
-    'l': (0, 0, 0, -1),
-    'u': (1, 0, 0, 1),
-    ',': (-1, 0, 0, 0),
-    '.': (-1, 0, 0, 1),
-    'm': (-1, 0, 0, -1),
-    'O': (1, -1, 0, 0),
-    'I': (1, 0, 0, 0),
-    'J': (0, 1, 0, 0),
-    'L': (0, -1, 0, 0),
-    'U': (1, 1, 0, 0),
-    '<': (-1, 0, 0, 0),
-    '>': (-1, -1, 0, 0),
-    'M': (-1, 1, 0, 0),
-    't': (0, 0, 1, 0),
-    'b': (0, 0, -1, 0),
+    'z': (1, 0, 0, 0),    # Avancer
+    'e': (1, 0, 0, -1),   # Avancer et tourner à droite
+    'q': (0, 0, 0, 1),    # Tourner à gauche
+    'd': (0, 0, 0, -1),   # Tourner à droite
+    'a': (1, 0, 0, 1),    # Avancer et tourner à gauche
+    's': (-1, 0, 0, 0),   # Reculer
+    'w': (-1, 0, 0, 1),   # Reculer et tourner à gauche
+    'c': (-1, 0, 0, -1),  # Reculer et tourner à droite
+    'E': (1, -1, 0, 0),   # Translation diagonale avant droite
+    'Z': (1, 0, 0, 0),    # Avancer (shift)
+    'Q': (0, 1, 0, 0),    # Translation gauche
+    'D': (0, -1, 0, 0),   # Translation droite
+    'A': (1, 1, 0, 0),    # Translation diagonale avant gauche
+    'S': (-1, 0, 0, 0),   # Reculer (shift)
+    'W': (-1, -1, 0, 0),  # Translation diagonale arrière droite
+    'C': (-1, 1, 0, 0),   # Translation diagonale arrière gauche
+    't': (0, 0, 1, 0),    # Monter
+    'g': (0, 0, -1, 0),   # Descendre
 }
 
 speedBindings = {
-    'q': (1.1, 1.1),
-    'z': (.9, .9),
-    'w': (1.1, 1),
-    'x': (.9, 1),
-    'e': (1, 1.1),
-    'c': (1, .9),
+    'r': (1.1, 1.1),  # Augmenter la vitesse linéaire et angulaire
+    'f': (.9, .9),    # Diminuer la vitesse linéaire et angulaire
+    't': (1.1, 1),    # Augmenter la vitesse linéaire
+    'g': (.9, 1),     # Diminuer la vitesse linéaire
+    'y': (1, 1.1),    # Augmenter la vitesse angulaire
+    'h': (1, .9),     # Diminuer la vitesse angulaire
 }
 
 

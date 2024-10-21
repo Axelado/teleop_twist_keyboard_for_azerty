@@ -1,13 +1,12 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>teleop_twist_keyboard_for_azerty</name>
-  <version>2.4.0</version>
+  <version>1.0.0</version>
   <description>
-    A robot-agnostic teleoperation node to convert keyboard commands to Twist
-    messages.
+    A modified version of the teleoperation node optimized for AZERTY keyboards, converting keyboard commands to Twist messages.
   </description>
 
-  <maintainer email="clalancette@openrobotics.org">Chris Lalancette</maintainer>
+  <maintainer email="axelniato@gmail.com">Axel Niato</maintainer>
 
   <license>BSD License 2.0</license>
 
