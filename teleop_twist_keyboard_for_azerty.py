@@ -135,7 +135,7 @@ def main():
 
     rclpy.init()
 
-    node = rclpy.create_node('teleop_twist_keyboard')
+    node = rclpy.create_node('teleop_twist_keyboard_for_azerty')
 
     # parameters
     stamped = node.declare_parameter('stamped', False).value

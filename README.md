@@ -1,15 +1,15 @@
-# teleop_twist_keyboard
+# teleop_twist_keyboard_for_azerty
 Generic Keyboard Teleoperation for ROS
 
 ## Run
 
 ```sh
-ros2 run teleop_twist_keyboard teleop_twist_keyboard
+ros2 run teleop_twist_keyboard_for_azerty teleop_twist_keyboard_for_azerty
 ```
 
 Publishing to a different topic (in this case `my_cmd_vel`).
 ```sh
-ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args --remap cmd_vel:=my_cmd_vel
+ros2 run teleop_twist_keyboard_for_azerty teleop_twist_keyboard_for_azerty --ros-args --remap cmd_vel:=my_cmd_vel
 ```
 
 ## Usage
