@@ -190,13 +190,13 @@ def main():
                 if (status == 14):
                     print(msg)
                 status = (status + 1) % 15
-            else:
+
                 x = 0.0
                 y = 0.0
                 z = 0.0
                 th = 0.0
-                if (key == '\x03'):
-                    break
+            if (key == '\x03'):
+                break
 
             if stamped:
                 twist_msg.header.stamp = node.get_clock().now().to_msg()
